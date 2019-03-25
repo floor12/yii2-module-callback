@@ -36,7 +36,7 @@ class Module extends \yii\base\Module
     /**
      * @var string
      */
-    public $editRole = '@';
+    public $adminRoles = ['@'];
 
     /**
      * @inheritdoc
