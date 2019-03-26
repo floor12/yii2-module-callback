@@ -31,7 +31,7 @@ echo $form->field($model, 'name')->textInput(['maxlength' => true, 'autofocus' =
 echo $form->field($model, 'phone')
     ->widget(MaskedInput::className(), ['mask' => '+9 (999) 999-99-99']);
 
-echo Html::button(Yii::t('app.f12.callback', 'Cancel'), [
+echo Html::button(Yii::t('app.f12.callback', 'Close'), [
     'class' => 'btn btn-default ',
     'onclick' => 'f12Callback.close(); return false;'
 ]);
