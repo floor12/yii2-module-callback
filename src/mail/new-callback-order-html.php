@@ -5,12 +5,16 @@
  * Date: 08.08.2018
  * Time: 22:21
  *
- * @var $this View
- * @var $user User
+ * @var $this \yii\web\View
+ * @var $model \floor12\callback\models\Callback
  */
 
-use floor12\user\models\User;
-use yii\web\View;
-
 ?>
-Новый запрос на звонок.
+
+<h1><?= Yii::t('app.f12.callback', 'New callback request from website:') ?></h1>
+
+<ul>
+    <li><b><?= $model->attributeLabels()['name'] ?></b>: <?= $model->name ?></li>
+    <li><b><?= $model->attributeLabels()['phone'] ?></b>: <?= \floor12\phone\PhoneFormatter::run($model->phone) ?></li>
+</ul>
+

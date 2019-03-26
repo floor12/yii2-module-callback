@@ -22,4 +22,6 @@ return [
         'Оставьте ваше имя и номер телефона и мы перезвоним вам в ближайшее время.',
     'We will contact you soon. This window will be closed in 5 sec.' => 'Мы свяжемся с вами в ближайшее время. Это окно будет автоматически закрыто через 5 секунд.',
     'Close now' => 'Закрыть сейчас',
+    'New callback request from website:' => 'Новый запрос на звонок с сайта:',
+    'New callback request' => 'Новый запрос на звонок',
 ];

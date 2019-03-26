@@ -60,7 +60,7 @@ class CallbackCreate
                     ['model' => $this->model]
                 )
                 ->setFrom([Yii::$app->params['no-replyEmail'] => Yii::$app->params['no-replyName']])
-                ->setSubject(Yii::t('app.f12.callback', 'New callback order'))
+                ->setSubject(Yii::t('app.f12.callback', 'New callback request'))
                 ->setTo(Yii::$app->params['callbackEmail'])
                 ->send();
         });
