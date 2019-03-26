@@ -2,6 +2,7 @@
 
 namespace floor12\callback\models;
 
+use floor12\phone\PhoneValidator;
 use Yii;
 
 /**
@@ -31,7 +32,7 @@ class Callback extends \yii\db\ActiveRecord
             [['created_at', 'name', 'phone'], 'required'],
             [['created_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
-            [['phone'], 'string', 'max' => 14],
+            [['phone'], PhoneValidator::class],
         ];
     }
 

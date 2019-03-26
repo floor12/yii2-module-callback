@@ -1,0 +1,46 @@
+div.f12-callback-backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #00000061;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+div.f12-callback-modal {
+    width: 90%;
+    position: fixed;
+    top: 100px;
+    background-color: white;
+    z-index: 21;
+    margin: 0 50%;
+    transform: translate(-50%);
+    box-shadow: 0px 0 30px #0000006b;
+    max-width: 440px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    padding: 20px;
+}
+
+div.f12-callback-modal button[type='submit'] {
+    float: right;
+}
+
+div.f12-callback-modal div.f12-callback-modal-title {
+    margin: 0 0 15px 0;
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 9px;
+    font-size: 1.4em;
+}
+
+body.f12-callback-modal-opened {
+    overflow: hidden;
+}
+
+body.f12-callback-modal-opened div.f12-callback-backdrop,
+body.f12-callback-modal-opened div.f12-callback-modal {
+    opacity: 1;
+}
