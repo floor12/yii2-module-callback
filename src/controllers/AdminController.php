@@ -3,7 +3,6 @@
 namespace floor12\callback\controllers;
 
 
-use floor12\callback\models\Callback;
 use floor12\callback\models\CallbackFilter;
 use floor12\editmodal\DeleteAction;
 use floor12\editmodal\IndexAction;
@@ -45,6 +44,15 @@ class AdminController extends Controller
     }
 
     /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $this->layout = Yii::$app->getModule('callback')->adminLayout;
+        parent::init();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function actions()
@@ -53,6 +61,7 @@ class AdminController extends Controller
             'index' => [
                 'class' => IndexAction::class,
                 'model' => CallbackFilter::class,
+                'view' => Yii::$app->getModule('callback')->viewAdminIndex
             ],
 //            'form' => [
 //                'class' => EditModalAction::class,
@@ -61,7 +70,7 @@ class AdminController extends Controller
 //            ],
             'delete' => [
                 'class' => DeleteAction::class,
-                'model' => Callback::class,
+                'model' => Yii::$app->getModule('callback')->callbackModel,
                 'message' => Yii::t('app.f12.callback', 'Request deleted')
             ],
         ];

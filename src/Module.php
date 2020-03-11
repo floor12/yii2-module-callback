@@ -3,6 +3,7 @@
 namespace floor12\callback;
 
 use Yii;
+
 /**
  * Callback module definition class
  * @property  string $editRole
@@ -12,22 +13,29 @@ class Module extends \yii\base\Module
     /**
      * @var string
      */
-    public $adminlayout = '@app/views/layouts/main';
+    public $adminLayout = '@app/views/layouts/main';
 
     /**
      * @var string
      */
-    public $viewForm= '@vendor/floor12/yii2-module-callback/src/views/frontend/_form';
+    public $viewForm = '@vendor/floor12/yii2-module-callback/src/views/frontend/_form';
 
     /**
      * @var string
      */
-    public $viewResult= '@vendor/floor12/yii2-module-callback/src/views/frontend/_result';
-
+    public $viewResult = '@vendor/floor12/yii2-module-callback/src/views/frontend/_success';
+    /**
+     * @var string
+     */
+    public $viewAdminIndex = '@vendor/floor12/yii2-module-callback/src/views/backend/index';
     /**
      * @var string
      */
     public $userModel = 'app\models\User';
+    /**
+     * @var string
+     */
+    public $callbackModel = 'floor12\callback\models\Callback';
     /**
      * @inheritdoc
      */

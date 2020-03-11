@@ -12,7 +12,6 @@ namespace floor12\callback\controllers;
 use floor12\callback\logic\CallbackCreate;
 use floor12\callback\models\Callback;
 use Yii;
-use yii\helpers\Html;
 use yii\web\Controller;
 
 class FrontendController extends Controller
@@ -21,16 +20,14 @@ class FrontendController extends Controller
 
     public function actionForm()
     {
-        $model = new Callback();
-
+        $className = Yii::$app->getModule('callback')->callbackModel;
+        $model = new $className;
         if (
             Yii::$app->request->isPost &&
             Yii::createObject(CallbackCreate::class, [$model, Yii::$app->request->post()])->execute()
         )
-            return $this->renderAjax('_success');
+            return $this->renderAjax(Yii::$app->getModule('callback')->viewResult);
 
-
-
-        return $this->renderAjax('_form', ['model' => $model]);
+        return $this->renderAjax(Yii::$app->getModule('callback')->viewForm, ['model' => $model]);
     }
 }

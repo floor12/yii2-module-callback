@@ -11,6 +11,8 @@ namespace floor12\callback\logic;
 use floor12\callback\models\Callback;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\db\ActiveRecord;
+use yii\db\ActiveRecordInterface;
 
 class CallbackCreate
 {
@@ -29,7 +31,7 @@ class CallbackCreate
      * @param array $data
      * @throws InvalidConfigException
      */
-    function __construct(Callback $model, array $data)
+    function __construct(ActiveRecordInterface $model, array $data)
     {
         if (empty(Yii::$app->params['no-replyEmail']))
             throw new InvalidConfigException('Parametr `no-replyEmail` not found in app config.');
@@ -52,7 +54,7 @@ class CallbackCreate
     {
         $this->model->load($this->data);
 
-        $this->model->on(Callback::EVENT_AFTER_INSERT, function ($event) {
+        $this->model->on(ActiveRecord::EVENT_AFTER_INSERT, function ($event) {
             Yii::$app
                 ->mailer
                 ->compose(
