@@ -40,6 +40,10 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'floor12\callback\controllers';
+    /**
+     * @var string
+     */
+    public $creatorClass = 'floor12\callback\logic\CallbackCreate';
 
     /**
      * @var string
