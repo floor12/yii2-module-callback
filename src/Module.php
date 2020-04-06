@@ -27,7 +27,7 @@ class Module extends \yii\base\Module
     /**
      * @var string
      */
-    public $viewAdminIndex = '@vendor/floor12/yii2-module-callback/src/views/backend/index';
+    public $viewAdminIndex = '@vendor/floor12/yii2-module-callback/src/views/admin/index';
     /**
      * @var string
      */

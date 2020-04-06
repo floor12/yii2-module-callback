@@ -5,8 +5,8 @@ use floor12\callback\assets\CallbackAdminAsset;
 use floor12\callback\models\Callback;
 use floor12\editmodal\EditModalHelper;
 use floor12\phone\PhoneFormatter;
-use kartik\form\ActiveForm;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 CallbackAdminAsset::register($this);
