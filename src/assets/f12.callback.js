@@ -4,6 +4,8 @@ f12Callback = {
 
     callbackModal: document.createElement('div'),
 
+    callbackWrapper: document.createElement('div'),
+
     xhr: new XMLHttpRequest(),
 
     xhrScript: new XMLHttpRequest(),
@@ -14,11 +16,14 @@ f12Callback = {
         this.callbackActionUrl = callbackActionUrl;
         this.backdrop.setAttribute('class', 'f12-callback-backdrop');
         this.callbackModal.setAttribute('class', 'f12-callback-modal');
-        this.backdrop.addEventListener('click', () => {
+        this.callbackWrapper.setAttribute('class', 'f12-callback-wrapper');
+        this.callbackWrapper.addEventListener('click', () => {
             this.close();
         });
         document.body.appendChild(this.backdrop);
-        document.body.appendChild(this.callbackModal);
+        document.body.appendChild(this.callbackWrapper);
+        this.callbackWrapper.appendChild(this.callbackModal);
+
         setTimeout(function () {
             document.body.classList.add('f12-callback-modal-opened');
         }, 100);
@@ -40,7 +45,7 @@ f12Callback = {
     close: function () {
         document.body.classList.remove('f12-callback-modal-opened');
         setTimeout(function () {
-            f12Callback.callbackModal.remove();
+            f12Callback.callbackWrapper.remove();
             f12Callback.backdrop.remove();
         }, 400);
 

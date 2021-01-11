@@ -10,10 +10,19 @@ div.f12-callback-backdrop {
     transition: opacity 0.2s ease;
 }
 
+div.f12-callback-wrapper {
+    overflow: scroll;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+}
+
 div.f12-callback-modal {
     width: 90%;
-    position: fixed;
-    top: 100px;
+    top: 5vh;
     background-color: white;
     z-index: 21;
     margin: 0 50%;
