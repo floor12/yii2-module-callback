@@ -19,7 +19,6 @@ f12Callback = {
             if (document.getElementsByTagName('script')[i].src.length > 0)
                 this.scriptsOnPage.push(document.getElementsByTagName('script')[i].src);
         }
-        console.log(this.scriptsOnPage);
         this.callbackActionUrl = callbackActionUrl;
         this.backdrop.setAttribute('class', 'f12-callback-backdrop');
         this.callbackModal.setAttribute('class', 'f12-callback-modal');
@@ -103,13 +102,9 @@ f12Callback = {
                         console.log(f12Callback.xhrScript);
                     }
                 };
-                console.log('Cheking: ' + scripts[i].src);
                 if (this.checkScriptIsLoaded(scripts[i].src) === false) {
                     this.xhrScript.open('GET', scripts[i].src, false);
                     this.xhrScript.send();
-                    console.log('Not laaded');
-                } else {
-                    console.log('Laaded');
                 }
             } else {
                 inlineScript += scripts[i].innerHTML;
@@ -131,9 +126,5 @@ f12Callback = {
         setTimeout(function () {
             f12Callback.close();
         }, 5000)
-    },
-    test: function () {
-        console.log(this.checkScriptIsLoaded('/js/callback.js?v=1610283284'));
     }
-
 }
