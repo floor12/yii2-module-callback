@@ -12,13 +12,21 @@ f12Callback = {
 
     callbackActionUrl: '',
 
+    scriptsOnPage: [],
+
     open: function (callbackActionUrl) {
+        for (var i = 0; i < document.getElementsByTagName('script').length; i++) {
+            if (document.getElementsByTagName('script')[i].src.length > 0)
+                this.scriptsOnPage.push(document.getElementsByTagName('script')[i].src);
+        }
+        console.log(this.scriptsOnPage);
         this.callbackActionUrl = callbackActionUrl;
         this.backdrop.setAttribute('class', 'f12-callback-backdrop');
         this.callbackModal.setAttribute('class', 'f12-callback-modal');
         this.callbackWrapper.setAttribute('class', 'f12-callback-wrapper');
-        this.callbackWrapper.addEventListener('click', () => {
-            this.close();
+        this.callbackWrapper.addEventListener('click', (event) => {
+            if (event.target.classList[0] == 'f12-callback-wrapper')
+                this.close();
         });
         document.body.appendChild(this.backdrop);
         document.body.appendChild(this.callbackWrapper);
@@ -95,19 +103,37 @@ f12Callback = {
                         console.log(f12Callback.xhrScript);
                     }
                 };
-                this.xhrScript.open('GET', scripts[i].src, false);
-                this.xhrScript.send();
+                console.log('Cheking: ' + scripts[i].src);
+                if (this.checkScriptIsLoaded(scripts[i].src) === false) {
+                    this.xhrScript.open('GET', scripts[i].src, false);
+                    this.xhrScript.send();
+                    console.log('Not laaded');
+                } else {
+                    console.log('Laaded');
+                }
             } else {
                 inlineScript += scripts[i].innerHTML;
             }
         }
         eval(inlineScript);
     },
-
+    checkScriptIsLoaded: function (url) {
+        let loaded = false;
+        let scripts = this.scriptsOnPage;
+        for (var i = 0; i < scripts.length; i++) {
+            if (scripts[i] === url) {
+                loaded = true;
+            }
+        }
+        return loaded;
+    },
     autoclose: function () {
         setTimeout(function () {
             f12Callback.close();
         }, 5000)
+    },
+    test: function () {
+        console.log(this.checkScriptIsLoaded('/js/callback.js?v=1610283284'));
     }
 
 }
