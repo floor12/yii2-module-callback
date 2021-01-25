@@ -58,12 +58,17 @@ f12Callback = {
 
     },
 
-    submit: function () {
-        form = document.getElementById('callback-form');
-
-        this.xhr.open('POST', this.callbackActionUrl);
-        this.xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        this.xhr.send(this.param(this.serializeForm(form)));
+    submit: function (event) {
+        event.preventDefault();
+        const form = document.getElementById('callback-form');
+        const button = form.getElementsByClassName('callback-submit-button')[0];
+        if (button.disabled !== true) {
+            button.disabled = true;
+            this.xhr.open('POST', this.callbackActionUrl);
+            this.xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            this.xhr.send(this.param(this.serializeForm(form)));
+            console.log('submiting...');
+        }
         return false;
     },
 
