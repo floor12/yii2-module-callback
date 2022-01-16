@@ -36,6 +36,9 @@ echo Html::button(Yii::t('app.f12.callback', 'Close'), [
     'onclick' => 'f12Callback.close(); return false;'
 ]);
 
+echo $form->field($model, 'topic_id')->label(false)->hiddenInput();
+
+
 echo Html::submitButton(Yii::t('app.f12.callback', 'Send'), ['class' => 'btn btn-primary']);
 
 ActiveForm::end();

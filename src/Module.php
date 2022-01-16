@@ -2,6 +2,7 @@
 
 namespace floor12\callback;
 
+use floor12\callback\models\CallbackTopics;
 use Yii;
 
 /**
@@ -44,11 +45,19 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $creatorClass = 'floor12\callback\logic\CallbackCreate';
+    /**
+     * @var string
+     */
+    public $topicsClass = 'floor12\callback\models\CallbackTopics';
 
     /**
      * @var string
      */
     public $adminRoles = ['@'];
+    /**
+     * @var CallbackTopics
+     */
+    public $topics;
 
     /**
      * @inheritdoc
@@ -56,6 +65,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->registerTranslations();
+        $this->topics = Yii::createObject($this->topicsClass, []);
     }
 
 
@@ -74,4 +84,18 @@ class Module extends \yii\base\Module
         ];
     }
 
+    public function listTopicSubjects()
+    {
+        return $this->topics::$subjects;
+    }
+
+    public function getTopicEmails($topicId)
+    {
+        return $this->topics->getTopicEmails($topicId);
+    }
+
+    public function getTopicSubject($topicId)
+    {
+        return $this->topics->getTopicSubject($topicId);
+    }
 }

@@ -9,6 +9,7 @@
 namespace floor12\callback\logic;
 
 use floor12\callback\models\Callback;
+use floor12\callback\Module;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
@@ -20,6 +21,10 @@ class CallbackCreate
      * @var Callback
      */
     protected $model;
+    /**
+     * @var Module
+     */
+    protected $module;
     /**
      * @var array
      */
@@ -39,9 +44,7 @@ class CallbackCreate
         if (empty(Yii::$app->params['no-replyName']))
             throw new InvalidConfigException('Parametr `no-replyName` not found in app config.');
 
-        if (empty(Yii::$app->params['callbackEmail']))
-            throw new InvalidConfigException('Parametr `callbackEmail` not found in app config.');
-
+        $this->module = Yii::$app->getModule('callback');
         $this->data = $data;
         $this->model = $model;
         $this->model->created_at = time();
@@ -62,8 +65,8 @@ class CallbackCreate
                     ['model' => $this->model]
                 )
                 ->setFrom([Yii::$app->params['no-replyEmail'] => Yii::$app->params['no-replyName']])
-                ->setSubject(Yii::t('app.f12.callback', 'New callback request'))
-                ->setTo(Yii::$app->params['callbackEmail'])
+                ->setSubject($this->module->getTopicSubject($this->model->topic_id))
+                ->setTo($this->module->getTopicEmails($this->model->topic_id))
                 ->send();
         });
 

@@ -24,4 +24,6 @@ return [
     'Close now' => 'Закрыть сейчас',
     'New callback request from website:' => 'Новый запрос на звонок с сайта:',
     'New callback request' => 'Новый запрос на звонок',
+    'Topic' => 'Тема',
+    'All topics' => 'Все темы',
 ];
