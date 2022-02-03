@@ -14,12 +14,12 @@ class CallbackTopics
         self::TOPIC_DEFAULT => 'Callback request from web site'
     ];
 
-    public function getTopicSubject($topicId): string
+    public function getTopicSubject($topicId): ?string
     {
         return $this::$subjects[$topicId];
     }
 
-    public function getTopicEmails($topicId): array
+    public function getTopicEmails($topicId): ?array
     {
         return $this::$emails[$topicId];
     }
